@@ -1,0 +1,45 @@
+name: ecoli_wgs
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  # --- Core workflow tools ---
+  - fastqc
+  - multiqc
+  - fastp
+  - kraken2
+  - spades
+  - quast
+  - checkm-genome
+  - prokka
+  - bwa
+  - samtools
+  - freebayes
+
+  # --- Comparative genomics & pangenome ---
+  - roary
+  - mafft
+  - iqtree
+
+  # --- AMR / virulence / plasmid typing ---
+  - amrfinderplus
+  - abricate
+  - mob_suite
+  - ectyper
+
+  # --- General dependencies ---
+  - python=3.10
+  - perl
+  - r-base>=4.3
+  - r-ggplot2
+  - r-dplyr
+  - r-data.table
+
+  # --- Optional visualization tools ---
+  - itolapi   # optional for iTOL export
+  - phandango # optional (if used)
+  
+  # --- Utilities ---
+  - seqkit
+  - parallel
