@@ -1,0 +1,57 @@
+process {
+  // Automatically skip failed samples and continue the run
+  errorStrategy = 'ignore'       // Never fail the workflow on task errors
+  maxRetries     = 0             // Do not retry failed tasks
+  maxErrors      = '-1'          // Allow unlimited global errors
+
+  // Resources
+  cpus           = 64
+  memory         = 250.GB
+  time           = 24.h
+
+  scratch        = true
+  publishDirMode = 'copy'
+}
+
+singularity {
+  enabled    = true
+  autoMounts = true
+  cacheDir   = '/home/wsp1/.nextflow-singularity-cache/'
+  pullTimeout = '4h'
+}
+
+timeline {
+  enabled   = true
+  file      = 'logs/timeline.html'
+  overwrite = true
+}
+
+trace {
+  enabled   = true
+  file      = 'logs/trace.txt'
+  overwrite = true
+}
+
+report {
+  enabled   = true
+  file      = 'logs/report.html'
+  overwrite = true
+}
+
+dag {
+  enabled   = true
+  file      = 'logs/flowchart.png'
+  overwrite = true
+}
+
+params {
+  // Skip specific failing samples
+  skip_samples_on_fail = true
+
+  // Explicit list of samples to exclude
+  exclude_samples = []
+
+  max_cpus   = 64
+  max_memory = 250.GB
+  max_time   = '24.h'
+}
